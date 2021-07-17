@@ -8,23 +8,33 @@ pointer = 0
 def increment_pointer():
     global pointer
     if pointer >= byte - 1: pointer = 0
-    else pointer += 1
+    else: pointer += 1
 
 # decrements pointer by one
 def decrement_pointer():
     global pointer
     if pointer <= 0: pointer = byte - 1
-    else pointer -= 1
+    else: pointer -= 1
 
 # increments byte at pointer by one
 def increment_byte():
     if bytelist[pointer] >= byte - 1: bytelist[pointer] = 0
-    else bytelist[pointer] += 1
+    else: bytelist[pointer] += 1
 
 # decrements byte at pointer by one
 def decrement_byte():
     if bytelist[pointer] <= 0: bytelist[pointer] = byte - 1
-    else bytelist[pointer] -= 1
+    else: bytelist[pointer] -= 1
+
+# outputs byte at pointer
+def output_byte():
+    char = chr(bytelist[pointer])
+    print(char, end='')
+
+# outputs number at pointer
+def output_num():
+    num = bytelist[pointer]
+    print(num)
 
 # processes given char
 def process(char):
@@ -32,6 +42,8 @@ def process(char):
     elif char == '<': decrement_pointer()
     elif char == '+': increment_byte()
     elif char == '-': decrement_byte()
+    elif char == '.': output_byte()
+    elif char == ':': output_num()
 
 # parses given program
 def parse(program):
