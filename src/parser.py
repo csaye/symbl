@@ -3,6 +3,7 @@ index = 0
 byte = 256
 bytelist = [0 for i in range(byte)]
 pointer = 0
+program = None
 
 # increments pointer by one
 def increment_pointer():
@@ -36,6 +37,26 @@ def output_num():
     num = bytelist[pointer]
     print(num)
 
+# ends loop if byte at pointer zero
+def loop_start():
+    global index
+    if not bytelist[pointer]:
+        loops = 1
+        while index < len(program) - 1 and loops > 0:
+            index += 1
+            if program[index] == '[': loops += 1
+            elif program[index] == ']': loops -= 1
+
+# loops if byte at pointer nonzero
+def loop_end():
+    global index
+    if bytelist[pointer]:
+        loops = 1
+        while index < len(program) - 1 and loops > 0:
+            index -= 1
+            if program[index] == '[': loops -= 1
+            elif program[index] == ']': loops += 1
+
 # processes given char
 def process(char):
     if char == '>': increment_pointer()
@@ -44,10 +65,13 @@ def process(char):
     elif char == '-': decrement_byte()
     elif char == '.': output_byte()
     elif char == ':': output_num()
+    elif char == '[': loop_start()
+    elif char == ']': loop_end()
 
 # parses given program
-def parse(program):
-    global index
+def parse(prog):
+    global index, program
+    program = prog
     while index < len(program):
         char = program[index]
         process(char)
