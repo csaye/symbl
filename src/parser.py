@@ -27,6 +27,14 @@ def decrement_byte():
     if bytelist[pointer] <= 0: bytelist[pointer] = byte - 1
     else: bytelist[pointer] -= 1
 
+# bitshifts byte at pointer left by one
+def lshift_byte():
+    bytelist[pointer] = min(bytelist[pointer] << 1, byte - 1)
+
+# bitshifts byte at pointer right by one
+def rshift_byte():
+    bytelist[pointer] >>= 1
+
 # outputs byte at pointer
 def output_byte():
     char = chr(bytelist[pointer])
@@ -73,6 +81,8 @@ def process(char):
     elif char == '<': decrement_pointer()
     elif char == '+': increment_byte()
     elif char == '-': decrement_byte()
+    elif char == '*': lshift_byte()
+    elif char == '/': rshift_byte()
     elif char == '.': output_byte()
     elif char == ':': output_num()
     elif char == '[': loop_start()
