@@ -1,0 +1,6 @@
+9+ # set first cell to 10
+[ # repeat while first cell nonzero
+>: # print number in second cell
++ # increment second cell
+<- # decrement first cell
+] # repeat while first cell nonzero
