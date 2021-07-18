@@ -1,3 +1,5 @@
+from readchar import readchar
+
 # globals
 index = 0
 byte = 256
@@ -43,7 +45,20 @@ def output_byte():
 # outputs number at pointer
 def output_num():
     num = bytelist[pointer]
-    print(num)
+    print(num, end='')
+
+# inputs one byte
+def input_byte():
+    char = readchar()
+    value = ord(char)
+    bytelist[pointer] = min(value, byte - 1)
+
+# inputs one number
+def input_num():
+    char = readchar()
+    if char.isdecimal():
+        value = int(char)
+        bytelist[pointer] = value
 
 # ends loop if byte at pointer zero
 def loop_start():
@@ -67,7 +82,7 @@ def loop_end():
 
 # sets byte at pointer to given value
 def set_byte(value):
-    bytelist[pointer] = min(max(0, value), byte - 1)
+    bytelist[pointer] = min(value, byte - 1)
 
 # skips over comment
 def comment():
@@ -85,6 +100,8 @@ def process(char):
     elif char == '/': rshift_byte()
     elif char == '.': output_byte()
     elif char == ':': output_num()
+    elif char == ',': input_byte()
+    elif char == ';': input_num()
     elif char == '[': loop_start()
     elif char == ']': loop_end()
     elif char.isalpha(): set_byte(ord(char))
