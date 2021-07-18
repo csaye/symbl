@@ -2,6 +2,14 @@
 
 An interpreted symbol-based language inspired by BF.
 
+## Installation
+
+Clone source repository: `git clone https://github.com/csaye/symbl`<br />
+Change directory to `symbl/`: `cd symbl/`<br />
+Install requirements: `pip install -r requirements.txt`<br />
+Give permission to run `run.sh`:`chmod +x run.sh`<br />
+Run `run.sh` on your program file: `./run.sh <program>`
+
 ## Symbols
 
 `>` increment pointer<br />
