@@ -52,7 +52,7 @@ def loop_end():
     global index
     if bytelist[pointer]:
         loops = 1
-        while index < len(program) - 1 and loops > 0:
+        while index > 0 and loops > 0:
             index -= 1
             if program[index] == '[': loops -= 1
             elif program[index] == ']': loops += 1
@@ -60,6 +60,12 @@ def loop_end():
 # sets byte at pointer to given value
 def set_byte(value):
     bytelist[pointer] = min(max(0, value), byte - 1)
+
+# skips over comment
+def comment():
+    global index
+    while index < len(program) and program[index] != '\n':
+        index += 1
 
 # processes given char
 def process(char):
@@ -73,6 +79,7 @@ def process(char):
     elif char == ']': loop_end()
     elif char.isalpha(): set_byte(ord(char))
     elif char.isdecimal(): set_byte(int(char))
+    elif char == '#': comment()
 
 # parses given program
 def parse(prog):
