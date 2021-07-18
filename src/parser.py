@@ -57,6 +57,10 @@ def loop_end():
             if program[index] == '[': loops -= 1
             elif program[index] == ']': loops += 1
 
+# sets byte at pointer to given value
+def set_byte(value):
+    bytelist[pointer] = min(max(0, value), byte - 1)
+
 # processes given char
 def process(char):
     if char == '>': increment_pointer()
@@ -67,6 +71,8 @@ def process(char):
     elif char == ':': output_num()
     elif char == '[': loop_start()
     elif char == ']': loop_end()
+    elif char.isalpha(): set_byte(ord(char))
+    elif char.isdecimal(): set_byte(int(char))
 
 # parses given program
 def parse(prog):
