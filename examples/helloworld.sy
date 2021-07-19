@@ -1,5 +1,5 @@
 H.e.l..o. # print 'Hello'
 A/. # print ' ' (char code 32)
 W.o.r.l.d. # print 'World'
-A/+. # print '!' (char code 33)
+B/. # print '!' (char code 33)
 9+. # print '\n' (char code 10)
