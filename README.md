@@ -1,5 +1,7 @@
 # Symbl
 
+<img height="200px" src="https://user-images.githubusercontent.com/27871609/126228442-e4d28adc-9a49-435a-97e3-0c219891fbd4.png">
+
 An interpreted symbol-based language inspired by BF.
 
 ## Installation
