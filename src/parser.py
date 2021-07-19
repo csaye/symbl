@@ -84,12 +84,6 @@ def loop_end():
 def set_byte(value):
     bytelist[pointer] = min(value, byte - 1)
 
-# skips over comment
-def comment():
-    global index
-    while index < len(program) and program[index] != '\n':
-        index += 1
-
 # processes given char
 def process(char):
     if char == '>': increment_pointer()
@@ -106,12 +100,26 @@ def process(char):
     elif char == ']': loop_end()
     elif char.isalpha(): set_byte(ord(char))
     elif char.isdecimal(): set_byte(int(char))
-    elif char == '#': comment()
+
+# minifies and strips input program
+def minify(prog):
+    new_prog = ''
+    i = 0
+    # for each character in program
+    while i < len(prog):
+        char = prog[i]
+        # if comment, skip to end of line
+        if char == '#':
+            while i < len(prog) and prog[i] != '\n': i += 1
+        # if not whitespace, append char
+        elif not char.isspace(): new_prog += prog[i]
+        i += 1
+    return new_prog
 
 # parses given program
 def parse(prog):
     global index, program
-    program = prog
+    program = minify(prog)
     while index < len(program):
         char = program[index]
         process(char)
